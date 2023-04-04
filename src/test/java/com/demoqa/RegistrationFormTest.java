@@ -29,7 +29,7 @@ public class RegistrationFormTest extends TestBase {
         $(".react-datepicker__month").$(byText("16")).click();
         $("#subjectsInput").setValue("Commerce").pressEnter();
         $("#hobbiesWrapper").$(byText("Music")).click();
-        $("#uploadPicture").uploadFile(new File("src/test/resources/misterPesel.jpg"));
+        $("#uploadPicture").uploadFromClasspath("misterPesel.jpg");
         $("#currentAddress").setValue("49 London Road London N81 4QR");
         $("#state").click();
         $("#stateCity-wrapper").$(byText("Haryana")).click();
