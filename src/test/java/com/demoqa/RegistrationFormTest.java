@@ -12,7 +12,7 @@ public class RegistrationFormTest extends TestBase {
     @Test
     void fillAllFormFieldsTest() {
         open("/automation-practice-form");
-
+        $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
         executeJavaScript("$('footer').remove()");
         executeJavaScript("$('#fixedban').remove()");
 
