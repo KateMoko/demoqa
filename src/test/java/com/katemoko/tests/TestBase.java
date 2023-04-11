@@ -1,9 +1,13 @@
-package com.demoqa;
+package com.katemoko.tests;
 
 import com.codeborne.selenide.Configuration;
+import com.katemoko.pages.RegistrationPage;
 import org.junit.jupiter.api.BeforeAll;
 
 public class TestBase {
+
+    RegistrationPage registrationPage = new RegistrationPage();
+
     @BeforeAll
     static void beforeAll() {
         Configuration.baseUrl = "https://demoqa.com";
