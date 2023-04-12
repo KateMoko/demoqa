@@ -13,6 +13,6 @@ public class CalendarComponent {
     public void setDate(String day, String month, String year) {
         monthSelect.selectOption(month);
         yearSelect.selectOption(year);
-        $(".react-datepicker__day--0" + day + ":not(.react-datepicker__day--outside-month)").click();
+        $(String.format(".react-datepicker__day--0%s:not(.react-datepicker__day--outside-month)", day)).click();
     }
 }
