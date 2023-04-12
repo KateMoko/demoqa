@@ -8,13 +8,11 @@ public class CalendarComponent {
     // SelenideElements / locator / etc
     SelenideElement monthSelect = $(".react-datepicker__month-select"),
             yearSelect = $(".react-datepicker__year-select");
-    String dayPickerLocator = ".react-datepicker__day--0%s:not(.react-datepicker__day--outside-month)";
 
     // Actions
     public void setDate(String day, String month, String year) {
         monthSelect.selectOption(month);
         yearSelect.selectOption(year);
-        dayPickerLocator = String.format(dayPickerLocator, day);
-        $(dayPickerLocator).click();
+        $(".react-datepicker__day--0" + day + ":not(.react-datepicker__day--outside-month)").click();
     }
 }

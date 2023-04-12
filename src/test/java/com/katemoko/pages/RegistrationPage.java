@@ -35,6 +35,11 @@ public class RegistrationPage {
         open("/automation-practice-form");
 
         formHeader.shouldHave(text("Student Registration Form"));
+
+        return this;
+    }
+
+    public RegistrationPage removeFooter(){
         executeJavaScript("$('footer').remove()");
         executeJavaScript("$('#fixedban').remove()");
 
