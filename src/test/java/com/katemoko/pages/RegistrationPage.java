@@ -18,16 +18,16 @@ public class RegistrationPage {
             firstNameInput = $("#firstName"),
             lastNameInput = $("#lastName"),
             emailInput = $("#userEmail"),
-            gender = $("#genterWrapper"),
+            genderWrapper = $("#genterWrapper"),
             mobileNumberInput = $("#userNumber"),
             dateOfBirthInput = $("#dateOfBirthInput"),
             subjectsInput = $("#subjectsInput"),
-            hobbies = $("#hobbiesWrapper"),
+            hobbiesWrapper = $("#hobbiesWrapper"),
             pictureInput = $("#uploadPicture"),
             currentAddressInput = $("#currentAddress"),
             stateInput = $("#state"),
             cityInput = $("#city"),
-            stateAndCity = $("#stateCity-wrapper"),
+            stateAndCityWrapper = $("#stateCity-wrapper"),
             submitButton = $("#submit");
 
     // Actions
@@ -39,7 +39,7 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage removeFooter(){
+    public RegistrationPage removeFooter() {
         executeJavaScript("$('footer').remove()");
         executeJavaScript("$('#fixedban').remove()");
 
@@ -65,7 +65,7 @@ public class RegistrationPage {
     }
 
     public RegistrationPage setGender(String value) {
-        gender.$(byText(value)).click();
+        genderWrapper.$(byText(value)).click();
 
         return this;
     }
@@ -83,14 +83,14 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage setSubjects(String value) {
+    public RegistrationPage setSubject(String value) {
         subjectsInput.setValue(value).pressEnter();
 
         return this;
     }
 
     public RegistrationPage setHobby(String value) {
-        hobbies.$(byText(value)).click();
+        hobbiesWrapper.$(byText(value)).click();
 
         return this;
     }
@@ -109,14 +109,14 @@ public class RegistrationPage {
 
     public RegistrationPage setState(String value) {
         stateInput.click();
-        stateAndCity.$(byText(value)).click();
+        stateAndCityWrapper.$(byText(value)).click();
 
         return this;
     }
 
     public RegistrationPage setCity(String value) {
         cityInput.click();
-        stateAndCity.$(byText(value)).click();
+        stateAndCityWrapper.$(byText(value)).click();
 
         return this;
     }
@@ -125,13 +125,13 @@ public class RegistrationPage {
         submitButton.click();
     }
 
-    public RegistrationPage verifyRegistrationResultsModalAppears(){
+    public RegistrationPage verifyRegistrationResultsModalAppears() {
         resultsModal.verifyModalAppears();
 
         return this;
     }
 
-    public RegistrationPage verifyResult(String key, String value){
+    public RegistrationPage verifyResult(String key, String value) {
         resultsModal.verifyResult(key, value);
 
         return this;
