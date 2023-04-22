@@ -19,10 +19,6 @@ public class RandomUtils {
         statesAndCities.put("Rajasthan", new String[]{"Jaipur", "Jaiselmer"});
     }
 
-    private <T> T getRandomValueFromArray(T[] array) {
-        return array[new Random().nextInt(array.length)];
-    }
-
     public String getFirstName() {
         return faker.name().firstName();
     }
@@ -36,7 +32,7 @@ public class RandomUtils {
     }
 
     public String getGender() {
-        return getRandomValueFromArray(genders);
+        return faker.options().option(genders);
     }
 
     public String getMobileNumber() {
@@ -48,11 +44,11 @@ public class RandomUtils {
     }
 
     public String getSubject() {
-        return getRandomValueFromArray(subjects);
+        return faker.options().option(subjects);
     }
 
     public String getHobby() {
-        return getRandomValueFromArray(hobbies);
+        return faker.options().option(hobbies);
     }
 
     public String gerAddress() {
@@ -60,10 +56,10 @@ public class RandomUtils {
     }
 
     public String getState() {
-        return getRandomValueFromArray(statesAndCities.keySet().toArray()).toString();
+        return faker.options().option(statesAndCities.keySet().toArray()).toString();
     }
 
     public String getCityByState(String state) {
-        return getRandomValueFromArray(statesAndCities.get(state));
+        return faker.options().option(statesAndCities.get(state));
     }
 }
