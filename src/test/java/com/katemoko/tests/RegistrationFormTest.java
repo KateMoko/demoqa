@@ -30,10 +30,13 @@ public class RegistrationFormTest extends TestBase {
                 state = randomUtils.getState(),
                 city = randomUtils.getCityByState(state);
 
-        step("Open and fill Registration form", () -> {
+        step("Open registration form", () -> {
             registrationPage.openPage()
-                    .removeFooter()
-                    .setFirstName(firstName)
+                    .removeFooter();
+        });
+
+        step("Fill out registration form", () -> {
+            registrationPage.setFirstName(firstName)
                     .setLastName(lastName)
                     .setEmail(email)
                     .setGender(gender)
