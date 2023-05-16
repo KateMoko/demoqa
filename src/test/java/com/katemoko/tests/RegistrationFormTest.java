@@ -1,11 +1,15 @@
 package com.katemoko.tests;
 
 import com.katemoko.utils.RandomUtils;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import static io.qameta.allure.Allure.step;
 
 public class RegistrationFormTest extends TestBase {
 
     @Test
+    @DisplayName("Successful registration")
     void successfulRegistrationTest() {
         RandomUtils randomUtils = new RandomUtils();
         String[] birthDate = randomUtils.getBirthDateAsStringArray();
@@ -24,32 +28,36 @@ public class RegistrationFormTest extends TestBase {
                 state = randomUtils.getState(),
                 city = randomUtils.getCityByState(state);
 
-        registrationPage.openPage()
-                .removeFooter()
-                .setFirstName(firstName)
-                .setLastName(lastName)
-                .setEmail(email)
-                .setGender(gender)
-                .setMobileNumber(mobileNumber)
-                .setBirthDate(birthDay, birthMonth, birthYear)
-                .setSubject(subject)
-                .setHobby(hobby)
-                .uploadPicture(pictureFileName)
-                .setCurrentAddress(currentAddress)
-                .setState(state)
-                .setCity(city)
-                .clickSubmit();
+        step("Open and fill Registration form", () -> {
+            registrationPage.openPage()
+                    .removeFooter()
+                    .setFirstName(firstName)
+                    .setLastName(lastName)
+                    .setEmail(email)
+                    .setGender(gender)
+                    .setMobileNumber(mobileNumber)
+                    .setBirthDate(birthDay, birthMonth, birthYear)
+                    .setSubject(subject)
+                    .setHobby(hobby)
+                    .uploadPicture(pictureFileName)
+                    .setCurrentAddress(currentAddress)
+                    .setState(state)
+                    .setCity(city)
+                    .clickSubmit();
+        });
 
-        registrationPage.verifyRegistrationResultsModalAppears()
-                .verifyResult("Student Name", firstName + " " + lastName)
-                .verifyResult("Student Email", email)
-                .verifyResult("Gender", gender)
-                .verifyResult("Mobile", mobileNumber)
-                .verifyResult("Date of Birth", birthDay + " " + birthMonth + "," + birthYear)
-                .verifyResult("Subjects", subject)
-                .verifyResult("Hobbies", hobby)
-                .verifyResult("Picture", pictureFileName)
-                .verifyResult("Address", currentAddress)
-                .verifyResult("State and City", state + " " + city);
+        step("Verify registration results", () -> {
+            registrationPage.verifyRegistrationResultsModalAppears()
+                    .verifyResult("Student Name", firstName + " " + lastName)
+                    .verifyResult("Student Email", email)
+                    .verifyResult("Gender", gender)
+                    .verifyResult("Mobile", mobileNumber)
+                    .verifyResult("Date of Birth", birthDay + " " + birthMonth + "," + birthYear)
+                    .verifyResult("Subjects", subject)
+                    .verifyResult("Hobbies", hobby)
+                    .verifyResult("Picture", pictureFileName)
+                    .verifyResult("Address", currentAddress)
+                    .verifyResult("State and City", state + " " + city);
+        });
     }
 }
