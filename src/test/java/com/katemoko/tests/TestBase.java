@@ -27,7 +27,11 @@ public class TestBase {
         Configuration.browserSize = System.getProperty("browserSize");
         Configuration.pageLoadStrategy = "eager";
 
-        Configuration.remote = System.getProperty("wdHub");
+        Configuration.remote = String.format("https://%s:%s@%s",
+                System.getProperty("selenoidLogin"),
+                System.getProperty("selenoidPassword"),
+                System.getProperty("selenoidUrl").replace("https://", "")
+        );
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
@@ -39,12 +43,12 @@ public class TestBase {
     }
 
     @BeforeEach
-    void addListener(){
+    void addListener() {
         SelenideLogger.addListener("allure", new AllureSelenide());
     }
 
     @AfterEach
-    void addAttachment(){
+    void addAttachment() {
         Attach.screenshotAs("Last step screenshot");
         Attach.pageSource();
         Attach.browserConsoleLogs();
