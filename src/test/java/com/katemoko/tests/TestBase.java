@@ -20,17 +20,17 @@ public class TestBase {
 
     @BeforeAll
     static void beforeAll() {
-        Configuration.baseUrl = System.getProperty("baseUrl");
-        String[] browserAndVersion = System.getProperty("browser").split(":");
+        Configuration.baseUrl = System.getProperty("baseUrl", "https://demoqa.com");
+        String[] browserAndVersion = System.getProperty("browser", "chrome:100.0").split(":");
         Configuration.browser = browserAndVersion[0];
         Configuration.browserVersion = browserAndVersion[1];
-        Configuration.browserSize = System.getProperty("browserSize");
+        Configuration.browserSize = System.getProperty("browserSize", "1920x1080");
         Configuration.pageLoadStrategy = "eager";
 
         Configuration.remote = String.format("https://%s:%s@%s",
-                System.getProperty("selenoidLogin"),
-                System.getProperty("selenoidPassword"),
-                System.getProperty("selenoidUrl").replace("https://", "")
+                System.getProperty("selenoidLogin", "user1"),
+                System.getProperty("selenoidPassword", "1234"),
+                System.getProperty("selenoidUrl", "https://selenoid.autotests.cloud/wd/hub").replace("https://", "")
         );
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
